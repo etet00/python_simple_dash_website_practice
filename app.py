@@ -20,7 +20,7 @@ data = {}
 for site in sites:
     data[site] = db_wrapper.get_data(site)
 
-test = {}
+all_sidebar = {}
 
 for site in sites:
     cont = []
@@ -33,9 +33,10 @@ for site in sites:
             ]
         cont = cont + temp
     # qq = html.Div(cont)
-    test[site] = cont
+    all_sidebar[site] = cont
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -90,17 +91,17 @@ def render_page_content(pathname):
     if pathname == "/":
         return html.Div(html.P("This is the content of the home page!"), className="container")
     elif pathname == "/page-1":
-        return html.Div(test[sites[0]], className="container")
+        return html.Div(all_sidebar[sites[0]], className="container")
     elif pathname == "/page-2":
-        return html.Div(test[sites[1]], className="container")
+        return html.Div(all_sidebar[sites[1]], className="container")
     elif pathname == "/page-3":
-        return html.Div(test[sites[2]], className="container")
+        return html.Div(all_sidebar[sites[2]], className="container")
     elif pathname == "/page-4":
-        return html.Div(test[sites[3]], className="container")
+        return html.Div(all_sidebar[sites[3]], className="container")
     elif pathname == "/page-5":
-        return html.Div(test[sites[4]], className="container")
+        return html.Div(all_sidebar[sites[4]], className="container")
     elif pathname == "/page-6":
-        return html.Div(test[sites[5]], className="container")    
+        return html.Div(all_sidebar[sites[5]], className="container")
     # If the user tries to reach a different page, return a 404 message
     return dbc.Jumbotron(
         [
