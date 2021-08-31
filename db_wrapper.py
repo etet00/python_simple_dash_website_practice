@@ -12,7 +12,8 @@ from pymongo import MongoClient
 class DBWrapper:
     def __init__(self):
         self.client = MongoClient(
-            "mongodb+srv://yoshi:Jx2rbQXpORMX3D6U@cluster0.wf5gy.mongodb.net/air?retryWrites=true&w=majority")
+            "mongodb+srv://yoshi:Jx2rbQXpORMX3D6U@cluster0.wf5gy.mongodb.net/air?retryWrites=true&w=majority"
+        )
         self.db = self.client.face_book_crawler
 
     def get_data(self, site):
